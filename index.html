@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex, nofollow"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jaylin | Striker Training to ECNL Tryouts</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<header><div class="brand">⚽ JAYLIN <span>#9</span></div>
+<nav id="nav"><a href="#home" class="active">Home</a><a href="#plan">Plan</a><a href="#drills">Drills</a><a href="#calendar">Calendar</a><a href="#tryout">Tryout Prep</a><a href="#tracker">Tracker</a></nav></header>
+<main>
+<section id="home" class="page active">
+ <div class="hero"><p class="kicker">SCCL Striker → ECNL</p><h1>Road to Tryouts</h1>
+ <p class="sub">Tryout day: <b>Saturday, May 15, 2027</b></p>
+ <div class="countdown" id="countdown"></div></div>
+ <div class="cards">
+  <div class="card"><h3>🎯 Her Goal</h3><p>Jaylin plays striker in the SCCL (Southeastern Clubs Champions League). Her goal is to earn a spot on an ECNL team, the top girls' club league, at tryouts on May 15, 2027.</p></div>
+  <div class="card"><h3>📅 The Approach</h3><p>She does 3–4 solo sessions a week on top of team practice. The plan is periodized: <b>Foundation → Build → Sharpen → Peak/Taper</b>. Every week has rest days, and injury prevention is part of every week.</p></div>
+  <div class="card"><h3>🔥 This Week</h3><div id="thisweek"></div></div>
+ </div>
+</section>
+<section id="plan" class="page"><h2>Week-by-Week Plan</h2>
+ <p class="note">Solo sessions go on non-practice days, or after a light practice. Keep the day before a game easy. If she's sore, tired, or in pain, she takes the day off. Change days to fit her team schedule.</p>
+ <div class="legend"><span class="p foundation">Foundation</span><span class="p build">Build</span><span class="p sharpen">Sharpen</span><span class="p peak">Peak/Taper</span></div>
+ <div id="weeks"></div></section>
+<section id="drills" class="page"><h2>Drill Library</h2>
+ <div class="filters" id="filters"></div><div id="drilllist" class="drillgrid"></div></section>
+<section id="calendar" class="page"><h2>Calendar</h2>
+ <div class="legend"><span class="p" style="background:#3b82f6">Club practice</span><span class="p" style="background:#ef4444">Game</span><span class="p" style="background:#20d3a5">Solo session</span><span class="p" style="background:#f59e0b">Event</span><span class="p" style="background:#64748b">Rest</span><span class="p" style="background:#ff3d7f">Tryout</span></div>
+ <div class="calbar"><button id="prev">‹</button><b id="calTitle"></b><button id="next">›</button>
+  <button id="viewMonth" class="on">Month</button><button id="viewWeek">Week</button><button id="today">Today</button><button id="ics">⬇ Export .ics</button></div>
+ <div id="calgrid"></div>
+ <div class="cards">
+ <form id="settings" class="card"><h3>⚙️ Club Schedule Settings</h3>
+  <p class="note">These are placeholders until the team schedule comes out. Change them and the plan and calendar move solo sessions onto non-practice days.</p>
+  <div id="pdays" class="row daypick"></div>
+  <div class="row"><label>Practice start<input type="time" name="pstart"></label><label>Practice end<input type="time" name="pend"></label></div>
+  <div class="row"><label>Usual game day<select name="gday"><option value="-1">None/varies</option><option value="0">Sun</option><option value="1">Mon</option><option value="2">Tue</option><option value="3">Wed</option><option value="4">Thu</option><option value="5">Fri</option><option value="6">Sat</option></select></label>
+  <label>Solo session time<input type="time" name="stime"></label></div>
+  <button type="submit">Save Settings</button></form>
+ <form id="evform" class="card"><h3>➕ Add Game / Event</h3>
+  <div class="row"><label>Date<input type="date" name="date" required min="2026-10-20" max="2027-05-15"></label><label>Time<input type="time" name="time"></label></div>
+  <div class="row"><label>Type<select name="type"><option value="game">Game</option><option value="event">Event / showcase</option><option value="practice">Extra practice</option></select></label>
+  <label>Title<input name="title" required placeholder="vs. Opponent FC"></label></div>
+  <button type="submit">Add</button><div id="evlist"></div></form></div>
+</section>
+<section id="tryout" class="page"><h2>Tryout Prep</h2><div id="tryoutcontent"></div></section>
+<section id="tracker" class="page"><h2>Progress Tracker</h2>
+ <p class="note">Data is saved on this device only (localStorage).</p>
+ <div class="stats" id="stats"></div>
+ <form id="logform" class="card">
+  <h3>Log a Session</h3>
+  <div class="row"><label>Date<input type="date" name="date" required></label>
+  <label>Type<select name="type"><option>Finishing</option><option>First touch / back to goal</option><option>Movement</option><option>Hold-up</option><option>Pressing</option><option>Speed / agility</option><option>Injury prevention</option><option>Team practice</option><option>Game</option></select></label>
+  <label>Minutes<input type="number" name="minutes" min="0" max="300"></label></div>
+  <div class="row"><label>Finishing test: goals<input type="number" name="goals" min="0"></label>
+  <label>out of shots<input type="number" name="shots" min="0"></label>
+  <label>20 m sprint (sec)<input type="number" step="0.01" name="sprint" min="0"></label>
+  <label>Feel (1–5)<input type="number" name="rpe" min="1" max="5"></label></div>
+  <label>Notes<input type="text" name="notes" placeholder="What went well / what to fix"></label>
+  <button type="submit">Save Session</button>
+ </form>
+ <div class="card"><h3>Sprint Times</h3><canvas id="chart" height="160"></canvas></div>
+ <div class="card"><h3>History <button class="ghost" id="export">Export CSV</button> <button class="ghost danger" id="clear">Clear all</button></h3><div id="history"></div></div>
+</section>
+</main>
+<footer>General training guide. Get a coach, athletic trainer, or physician to check any pain or injury. Ask parents/guardians before changing training load.</footer>
+<script src="data.js"></script><script src="events.js"></script><script src="app.js"></script>
+</body></html>
